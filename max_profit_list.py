@@ -43,7 +43,7 @@ def solution(A):
             max_list.append(max(profit_list))
             y += 1
         i += 1
-        y = i+1 #resetting internal loop counter
+        y = i+1 #updating internal loop counter
     
     return max(max_list)
 
