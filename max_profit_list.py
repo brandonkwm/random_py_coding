@@ -32,9 +32,6 @@
 # each element of array A is an integer within the range [0..200,000].
 
 def solution(A):
-    # write your code in Python 3.6
-    begin_index = 0
-    end_index = len(A) -1
     profit_list = []
     max_list = []
     i=0
