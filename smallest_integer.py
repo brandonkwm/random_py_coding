@@ -10,20 +10,12 @@ def solution(A):
     else:
         max_A = max(temp_A)
         min_A = min(temp_A)
-    temp_list = []  
-        
-    while min_A < max_A:
-        finder = max_A - min_A
-        if finder not in temp_A:
-            temp_list.append(finder)
-        min_A += min_A
-
-    if temp_A == []:
-        return 1
     
-    if temp_list == []:
-        return max_A+1
-    else:
-        return min(temp_list)
+    temp_list = []
 
- #note that the code is wrong.... needs to work on an additional logic e.g. [2] so i should return 1 and not 3...
+    i = 1
+    while min_A <= max_A:
+        test_A = min_A + i
+        if test_A not in A:
+            return test_A
+        i += 1
