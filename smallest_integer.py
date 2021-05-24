@@ -12,10 +12,24 @@ def solution(A):
         min_A = min(temp_A)
     
     temp_list = []
+    
+    #binary search to reduce the upper limit for faster performance
+    mid_val = (max_A + min_A) // 2 #get floor of value
+    while mid_val < max_A:
+        if mid_val not in A & mid_val < max_A & mid_val > min_A:
+            max_A = mid_val-1
+        else:
+            max_A = mid_val+1
+        mid_val = (max_A + min_A) // 2 
+
 
     i = 1
-    while min_A <= max_A:
-        test_A = min_A + i
-        if test_A not in A:
-            return test_A
-        i += 1
+    if min(temp_A) > 2:
+        while i < max_A:
+            test = min_A + i
+            if test not in A:
+                return test
+            i += 1
+    elseif min(temp_A) == 2:
+        return 1
+
