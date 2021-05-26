@@ -7,29 +7,36 @@ def solution(A):
     if temp_A == []:
         max_A = 0
         min_A = 0
+        median_A = 0
     else:
         max_A = max(temp_A)
         min_A = min(temp_A)
+        median_A = temp_A[len(temp_A)//2]
     
-    temp_list = []
-    
-    #binary search to reduce the upper limit for faster performance
+    #bring max val closer to median to limit search for better perf
     mid_val = (max_A + min_A) // 2 #get floor of value
-    while mid_val < max_A:
-        if mid_val not in A & mid_val < max_A & mid_val > min_A:
-            max_A = mid_val-1
-        else:
-            max_A = mid_val+1
-        mid_val = (max_A + min_A) // 2 
+    while mid_val < max_A and mid_val > median_A:
+        if mid_val not in temp_A: 
+            max_A = mid_val
+        mid_val = (max_A + mid_val) // 2 
+
+    mid_val = (min_A + median_A) // 2 #get floor of value
+    while mid_val < max_A and mid_val < median_A and mid_val > min(temp_A):
+        if mid_val not in temp_A: 
+            min_A = mid_val
+        mid_val = (min_A + mid_val) // 2 
 
 
     i = 1
-    if min(temp_A) > 2:
-        while i < max_A:
+    if max_A == 0:
+        return 1
+    elif min(temp_A) != 2:
+        while i <= max_A:
             test = min_A + i
             if test not in A:
                 return test
             i += 1
-    elseif min(temp_A) == 2:
+    elif min(temp_A) == 2:
         return 1
+
 
